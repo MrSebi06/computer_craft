@@ -1,17 +1,25 @@
-Number = math.random(1, 100)
+local function guessing_game(m)
+    local number = math.random(1, 100)
 
----@type integer
-Guess = nil
+    local guess = nil
 
-print("### Guess the number ###")
-print("A number has been chosen between 1 and 100. Guess it!")
+    m.write("### Guess the number ###")
+    m.write("A number has been chosen between 1 and 100. Guess it!")
 
-while Guess ~= Number do
-    Guess = tonumber(io.read())
-    if Guess < Number then
-        print("Too low!")
-    elseif Guess > Number then
-        print("Too high!")
+    while guess ~= number do
+        guess = tonumber(io.read())
+        if guess < number then
+            m.write("Too low!")
+        elseif guess > number then
+            m.write("Too high!")
+        end
     end
+    m.write("You guessed!")
 end
-print("You guessed!")
+
+m = peripheral.wrap("right")
+m.setTextScale(0.5)
+m.clear()
+m.setCursorPos(1, 1)
+guessing_game(m)
+
