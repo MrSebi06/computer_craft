@@ -1,5 +1,14 @@
-key, is_held = nil, false
-while not (key == "backspace" and is_held)  do
-    event, key, is_held = os.pullEvent("key")
-    print(("%s held=%s"):format(keys.getName(key), is_held))
+Number = math.random(1, 100)
+
+---@type integer
+Guess = nil
+
+while Guess ~= Number do
+    Guess = tonumber(io.read())
+    if Guess < Number then
+        print("Too low!")
+    elseif Guess > Number then
+        print("Too high!")
+    end
 end
+print("You guessed!")
