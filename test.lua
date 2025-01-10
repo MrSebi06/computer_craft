@@ -1,20 +1,18 @@
 local function guessing_game(m)
     local number = math.random(1, 100)
 
-    ---@type integer
-    local guess = nil
-
     m.write("### Guess the number ###")
+    break_line(m)
     m.write("A number has been chosen between 1 and 100. Guess it!")
 
     while guess ~= number do
-        guess = tonumber(io.read())
+        local guess = tonumber(io.read())
         if guess < number then
             m.write("Too low!")
         elseif guess > number then
             m.write("Too high!")
         end
-        m.write("\n")
+        break_line(m)
     end
     m.write("You guessed!")
 end
@@ -22,12 +20,17 @@ end
 local function setup_monitor()
     local m = peripheral.wrap("left")
 
-    m.setTextScale(0.5)
+    m.setTextScale(1)
     m.clear()
     m.setCursorPos(1, 1)
 
     return m
 end
+
+function break_line(m)
+    local _, y = m.getCursorPos()
+    m.setCursorPos(1, y + 1)
+end 
 
 local function main()
     local m = setup_monitor()
