@@ -18,12 +18,19 @@ local function guessing_game(m)
     m.write("You guessed!")
 end
 
-local m = peripheral.find("monitor")
-m = peripheral.wrap("left")
+local function setup_monitor()
+    local m = peripheral.wrap("left")
 
-m.setTextScale(5)
-m.clear()
-m.setCursorPos(1, 1)
+    m.setTextScale(0.5)
+    m.clear()
+    m.setCursorPos(1, 1)
 
-guessing_game(m)
+    return m
+end
 
+local function main()
+    local m = setup_monitor()
+    guessing_game(m)
+end
+
+main()
