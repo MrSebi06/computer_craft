@@ -14,6 +14,7 @@ local function guessing_game(m)
         elseif guess > number then
             m.write("Too high!")
         end
+        m.write("\n")
     end
     m.write("You guessed!")
 end
