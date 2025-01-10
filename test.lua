@@ -1,6 +1,7 @@
 local function guessing_game(m)
     local number = math.random(1, 100)
 
+    ---@type integer
     local guess = nil
 
     m.write("### Guess the number ###")
@@ -17,9 +18,12 @@ local function guessing_game(m)
     m.write("You guessed!")
 end
 
-m = peripheral.wrap("right")
-m.setTextScale(0.5)
+local m = peripheral.find("monitor")
+m = peripheral.wrap("left")
+
+m.setTextScale(5)
 m.clear()
 m.setCursorPos(1, 1)
+
 guessing_game(m)
 
